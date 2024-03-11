@@ -22,7 +22,6 @@ class BaseModel():
 
 
     def __str__(self):
-        print("Calling __str__...")
         string = "[" + str(self.__class__.__name__) + "]"
         string += " (" + self.id + ") "
         string += str(self.__dict__)

@@ -20,13 +20,14 @@ class FileStorage():
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj.to_dict()
 
-    def save(self, obj):
+    def save(self, obj=None):
         """serializes _objects to the JSON file"""
         #handling dynamic attriibutes
-        key2 = "{}.{}".format(obj.__class__.__name__, obj.id)
-        for key, value in obj.__dict__.items():
-            if key not in self.__objects[key2]:
-                self.__objects[key2][key] = value
+        if obj is not None:
+            key2 = "{}.{}".format(obj.__class__.__name__, obj.id)
+            for key, value in obj.__dict__.items():
+                if key not in self.__objects[key2]:
+                    self.__objects[key2][key] = value
 
         with open(self.__file_path, mode='w', encoding='utf-8') as myFile:
             myFile.write(json.dumps(self.__objects))
