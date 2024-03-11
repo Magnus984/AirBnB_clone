@@ -84,14 +84,47 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         argList = line.split(' ')
         objs = storage.all()
-        myList = [value for value in objs.values()]
+        myList = []
+        if len(argList) == 1 and (argList[0] == "" or argList[0] == "BaseModel"):
+            for key, value in objs.items():
+                obj = BaseModel(**value)
+                myList.append(str(obj))
+            print(myList)
+        elif len(argList) == 1 and argList[0] != "BaseModel":
+            print("** class doesn't exist **")
+
+    def help_all(self):
+        print("Prints all string representation of all instances based on class name or not")
+        print("Usage")
+        print("=====")
+        print("all or all [BaseModel]")
+
+    def do_update(self, line):
+        argList = line.split(' ')
         if len(argList) == 1 and argList[0] == "":
-            print(storage.all())
+            print("** class name missing **")
         elif len(argList) == 1 and argList[0] != "BaseModel":
             print("**class doesn't exist **")
-        elif len(argList) == 1 and argList[0] == "BaseModel": 
-            print(storage.all())
-
+        elif len(argList) == 1 and argList[0] == "BaseModel":
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(argList[0], argList[1])
+            if key in storage.all():
+                if len(argList) == 2 and argList[0] == "BaseModel":
+                    print("** attribute name missing **")
+                elif len(argList) == 3 and argList[0] == "BaseModel":
+                    print("** value missing **")
+                else:
+                    storage.all()[key][argList[2]] = argList[3].strip('"')
+                    storage.save()
+            else:
+                print("** no instance found **")
+    
+    def help_update(self):
+        print("Updates an instance based on the class name and id by adding or updating attribute")
+        print("Usage")
+        print("=====")
+        print("update <class name> <id> <attribute name> \"<attribute value>\"")
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop("**Welcome to this console. Enter help or ? to get started.**\n\n")
