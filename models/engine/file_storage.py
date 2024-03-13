@@ -8,7 +8,7 @@ class FileStorage():
     """Serializes instances to a JSON file and deserializes
     JSON file to instances.
     """
-    
+
     __file_path = "file.json"
     __objects = {}
 
@@ -22,7 +22,7 @@ class FileStorage():
 
     def save(self, obj=None):
         """serializes _objects to the JSON file"""
-        #handling dynamic attriibutes
+        # handling dynamic attriibutes
         if obj is not None:
             key2 = "{}.{}".format(obj.__class__.__name__, obj.id)
             for key, value in obj.__dict__.items():
@@ -36,4 +36,4 @@ class FileStorage():
         """deserializes __objects to the JSON file"""
         if path.exists(self.__file_path):
             with open(self.__file_path, mode='r', encoding='utf-8') as myFile:
-               self.__objects = json.loads(myFile.read())
+                self.__objects = json.loads(myFile.read())
