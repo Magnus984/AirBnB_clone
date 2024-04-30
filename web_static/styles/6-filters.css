@@ -15,25 +15,60 @@
     float: right;
     margin-right: 30px;
     margin-top: 10px;
+    
 }
 .filters button:hover {background-color: rgb(255, 0, 0, 0.5);}
 
-.locations {
-    height: 100%;
-    width: 25%;
-    border-right: 1px solid #DDDDDD;
-    float: left;
+.filters .locations,
+.filters .amenities {
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  width: 25%;
 }
-.amenities {
-    height: 100%;
-    width: 25%;
-    float: left;
+
+.filters .locations {
+    border-right: 1px solid #ddd;
 }
-.filters h3 {
-    font-weight: 600;
-    margin-bottom: 0;
-    margin-left: 10%;
+
+/* Locations and amenities hover opacity */
+.filters .locations:hover,
+.filters .amenities:hover {
+  background-color: #fafafa;
 }
+
+/* Locations and amenities popover menu */
+.filters .popover {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+
+/* Locations and amenities popover hover */
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
+  display: block;
+}
+
+/* Locations list style */
+.filters .locations ul {
+  padding: 6px 0 6px 0;
+}
+
+/* Locations list element margin */
+.filters .locations li {
+  margin: 0 auto 6px 3em;
+}
+
+/* Amenities list element margin */
+.filters .amenities li {
+  margin: 12px auto 12px 30px;
+}
+
+
 .filters h4 {
     font-weight: 400;
     font-size: 14px;
@@ -41,40 +76,9 @@
     margin-bottom: 0;
     margin-left: 10%;
 }
-ul {
-    list-style-type: none;
-    padding-top: 30px;
-}
-li {
-    list-style-type: none;
-    padding-bottom: 5%;
-}
 
-
-div ul.popover {
-    position: relative;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
-    background-color: #FAFAFA;
-    margin-top: 7%;
-    padding-bottom: 10%;
-    z-index: 1;
-    visibility: hidden;
-}
-.popover li h2{
-    padding: 0;
-    margin: 0;
-}
-div .popover_list {
-    padding:0px;
-    margin:0px;
-    padding-left: 10%;
-}
-.locations:hover >.popover{
-    visibility: visible;
-    margin-bottom: 50px;
-}
-
-.amenities:hover > .popover{
-    visibility: visible;
+.filters h3 {
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-left: 10%;
 }

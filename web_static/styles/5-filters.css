@@ -18,16 +18,16 @@
 }
 .filters button:hover {background-color: rgb(255, 0, 0, 0.5);}
 
-.locations {
-    height: 100%;
-    width: 25%;
-    border-right: 1px solid #DDDDDD;
-    float: left;
+.filters .locations,
+.filters .amenities {
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  width: 25%;
 }
-.amenities {
-    height: 100%;
-    width: 25%;
-    float: left;
+
+.filters .locations {
+    border-right: 1px solid #ddd;
 }
 .filters h3 {
     font-weight: 600;
